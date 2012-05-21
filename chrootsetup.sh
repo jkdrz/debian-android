@@ -10,8 +10,9 @@ export TERM=linux ## divine term
 export HOME=/root ## divine home
 
 echo "MOUNTING"
-losetup /dev/block/loop0 /Removable/MicroSD/debian.img #set up the loop image from uSD
-mount -t auto /dev/block/loop0 /sdcard/linux ## mount the filesystem
+ln -s /dev/block/loop0 /dev/loop0
+losetup /dev/loop0 /Removable/MicroSD/debian.img #set up the loop image from uSD
+mount -t auto /dev/loop0 /sdcard/linux ## mount the filesystem
 mount -t devpts devpts $mnt/dev/pts ### mount android devpts in root (mnt/dev/pts)
 mount -t proc proc $mnt/proc ## same as above
 mount -t sysfs sysfs $mnt/sys ### same as above
